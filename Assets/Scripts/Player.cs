@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Player : MonoBehaviour 
 {
-	Vector2 dir;
 	Vector2 clickedPosition;
 
 	public float playerSpeed;
@@ -22,7 +21,6 @@ public class Player : MonoBehaviour
 		{
 			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			clickedPosition = new Vector2(mousePos.x, mousePos.y);
-			dir = clickedPosition - rigidBody.position;
 		}
 	}
 
