@@ -13,7 +13,7 @@ public class Draggable : MonoBehaviour
 			Vector3 dir = Vector3.zero;
 
 			RaycastHit2D hit = Physics2D.Raycast (mousePos, dir);
-			if (hit != null && hit.collider.gameObject.tag == "Draggable")
+			if (hit.collider && hit.collider.gameObject.tag == "Draggable")
 			{
 				grabbedObject = hit.collider.attachedRigidbody;
 			}
