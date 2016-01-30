@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SceneController : MonoBehaviour 
 {
 	string levelToLoad;
 	public Vector2 playerPosition;
+	public Dictionary<string, Vector2> tableObjectPositions;
 
 	void Start()
 	{
 		DontDestroyOnLoad (this);
 		playerPosition = Vector2.zero;
+		tableObjectPositions = new Dictionary<string, Vector2> ();
 
 		if (Application.loadedLevelName == "loader_scene")
 		{
