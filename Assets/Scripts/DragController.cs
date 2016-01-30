@@ -1,25 +1,22 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 
-public class Draggable : MonoBehaviour 
+public class DragController : MonoBehaviour 
 {
 	Rigidbody2D grabbedObject;
     
     void Update ()
     {
-		if (Input.GetMouseButtonDown (0)) 
+		if (Input.GetMouseButton(0)) 
 		{
 			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			Vector3 dir = Vector3.zero;
 
-			RaycastHit2D hit = Physics2D.Raycast (mousePos, dir);
+			RaycastHit2D hit = Physics2D.Raycast (mousePos, Vector3.zero);
 			if (hit.collider && hit.collider.gameObject.tag == "Draggable")
 			{
 				grabbedObject = hit.collider.attachedRigidbody;
 			}
 		}
-
-		if (Input.GetMouseButtonUp (0))
+        else
 		{
 			grabbedObject = null;
 		}
