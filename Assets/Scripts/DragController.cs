@@ -31,7 +31,7 @@ public class DragController : MonoBehaviour
                 }
                 if (targetItem != null)
                 {
-                    targetItem.Activate(heldItem);
+                    heldItem.InteractWith(targetItem);
                 }
                 targetItem = null;
                 heldItem = null;

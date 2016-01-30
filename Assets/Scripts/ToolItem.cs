@@ -12,13 +12,33 @@ public class ToolItem : MonoBehaviour
 
     public ItemType type;
 
-    void Start () 
+    public bool InteractWith(TargetItem target)
     {
-    
-    }
-    
-    void Update () 
-    {
-    
+        switch (type)
+        {
+            case ItemType.Weapon:
+                Sacrifice s = target.gameObject.GetComponent<Sacrifice>();
+                if (s)
+                {
+                    s.Kill();
+                }
+                break;
+            case ItemType.Container:
+                Liquid l = target.gameObject.GetComponent<Liquid>();
+                if (l)
+                {
+                    l.Collect();
+                }
+                break;
+            case ItemType.Decorative:
+                DecorationSpace d = target.gameObject.GetComponent<DecorationSpace>();
+                if (d)
+                {
+                    d.Decorate();
+                }
+                break;
+        }
+
+        return false;
     }
 }

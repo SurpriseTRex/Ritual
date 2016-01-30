@@ -18,22 +18,6 @@ public class TargetItem : MonoBehaviour
 
     }
 
-    public void Activate(ToolItem item)
-    {
-        switch (item.type)
-        {
-            case ToolItem.ItemType.Weapon:
-                Debug.Log("Stabbed " + gameObject.name);
-                break;
-            case ToolItem.ItemType.Container:
-                Debug.Log("FIlling up a thing from " + gameObject.name);
-                break;
-            case ToolItem.ItemType.Decorative:
-                Debug.Log("placed item on " + gameObject.name);
-                break;
-        }
-    }
-
     public void OnTriggerEnter2D(Collider2D c)
     {
         if (c.gameObject.tag == "Draggable")
