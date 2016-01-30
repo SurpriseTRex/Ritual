@@ -17,5 +17,6 @@ public class Sacrifice : MonoBehaviour
     internal void Kill()
     {
         Debug.Log("Killed " + gameObject.name);
+        gameObject.GetComponent<ParticleSystem>().Play();
     }
 }
