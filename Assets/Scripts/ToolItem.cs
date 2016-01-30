@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class ToolItem : MonoBehaviour 
 {
+	SceneController sceneController;
+
     public enum ItemType
     {
         Weapon,
@@ -12,6 +14,7 @@ public class ToolItem : MonoBehaviour
 
     public ItemType type;
 
+<<<<<<< HEAD
     public bool InteractWith(TargetItem target)
     {
         switch (type)
@@ -40,5 +43,29 @@ public class ToolItem : MonoBehaviour
         }
 
         return false;
+=======
+    void Awake () 
+    {
+		sceneController = GameObject.Find ("GLOBAL_SCRIPTS").GetComponent<SceneController> ();
+
+		if (sceneController.tableObjectPositions.ContainsKey (gameObject.name))
+		{			
+			Vector2 objectPos = sceneController.tableObjectPositions [gameObject.name];
+			gameObject.GetComponent<Rigidbody2D> ().position = objectPos;
+		} 
+>>>>>>> d1b83d648f703fb923932cb890995978dedc403f
     }
+
+	void OnDestroy()
+	{
+		Rigidbody2D rigidbody = gameObject.GetComponent<Rigidbody2D> ();
+		if (sceneController.tableObjectPositions.ContainsKey (gameObject.name))
+		{
+			sceneController.tableObjectPositions[gameObject.name] = rigidbody.position;
+		} 
+		else
+		{
+			sceneController.tableObjectPositions.Add (gameObject.name, rigidbody.position);
+		}
+	}
 }

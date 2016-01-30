@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 	// UI
 	GameObject tableSwitchPanel;
 
-	void Start()
+	void Awake()
 	{		
 		sceneController = GameObject.Find ("GLOBAL_SCRIPTS").GetComponent<SceneController> ();
 
@@ -24,7 +24,6 @@ public class Player : MonoBehaviour
 		playerSpeed = 20f;
 		clickedPosition = Vector2.zero;
 		playerOverTable = false;
-
 
 		// UI
 		tableSwitchPanel = GameObject.Find ("Table_Switch_Panel");
