@@ -7,7 +7,13 @@ public class SceneController : MonoBehaviour
 
 	void Update () 
 	{
-
+		if (Input.GetKeyDown (KeyCode.E))
+		{
+			if (Application.loadedLevelName == "table_scene")
+			{
+				loadNextLevel("player_scene");
+			}
+		}
 	}
 
 	public void loadNextLevel(string levelToLoad)
