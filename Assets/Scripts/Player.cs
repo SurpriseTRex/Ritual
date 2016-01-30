@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
 			clickedPosition = new Vector2(mousePos.x, mousePos.y);
 		}
 
-		if (Input.GetKeyDown(KeyCode.E))
+		if (playerOverTable && Input.GetKeyDown(KeyCode.E))
 		{
 			GameObject.Find("SCRIPTS").GetComponent<SceneController>().loadNextLevel("table_scene");
 		}
