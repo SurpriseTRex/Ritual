@@ -14,7 +14,17 @@ public class ToolItem : MonoBehaviour
 
     public ItemType type;
 
-<<<<<<< HEAD
+    void Awake () 
+    {
+		sceneController = GameObject.Find ("GLOBAL_SCRIPTS").GetComponent<SceneController> ();
+
+		if (sceneController.tableObjectPositions.ContainsKey (gameObject.name))
+		{			
+			Vector2 objectPos = sceneController.tableObjectPositions [gameObject.name];
+			gameObject.GetComponent<Rigidbody2D> ().position = objectPos;
+		} 
+    }
+
     public bool InteractWith(TargetItem target)
     {
         switch (type)
@@ -43,20 +53,9 @@ public class ToolItem : MonoBehaviour
         }
 
         return false;
-=======
-    void Awake () 
-    {
-		sceneController = GameObject.Find ("GLOBAL_SCRIPTS").GetComponent<SceneController> ();
-
-		if (sceneController.tableObjectPositions.ContainsKey (gameObject.name))
-		{			
-			Vector2 objectPos = sceneController.tableObjectPositions [gameObject.name];
-			gameObject.GetComponent<Rigidbody2D> ().position = objectPos;
-		} 
->>>>>>> d1b83d648f703fb923932cb890995978dedc403f
     }
 
-	void OnDestroy()
+    void OnDestroy()
 	{
 		Rigidbody2D rigidbody = gameObject.GetComponent<Rigidbody2D> ();
 		if (sceneController.tableObjectPositions.ContainsKey (gameObject.name))
