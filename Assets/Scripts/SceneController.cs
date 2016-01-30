@@ -21,7 +21,7 @@ public class SceneController : MonoBehaviour
 		}
 	}
 
-	void loadNextLevel(string levelToLoad)
+	public void loadNextLevel(string levelToLoad)
 	{
 		if (Application.loadedLevelName != levelToLoad)
 		{
