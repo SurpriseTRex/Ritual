@@ -14,6 +14,36 @@ public class ToolItem : MonoBehaviour
 
     public ItemType type;
 
+<<<<<<< HEAD
+    public bool InteractWith(TargetItem target)
+    {
+        switch (type)
+        {
+            case ItemType.Weapon:
+                Sacrifice s = target.gameObject.GetComponent<Sacrifice>();
+                if (s)
+                {
+                    s.Kill();
+                }
+                break;
+            case ItemType.Container:
+                Liquid l = target.gameObject.GetComponent<Liquid>();
+                if (l)
+                {
+                    l.Collect();
+                }
+                break;
+            case ItemType.Decorative:
+                DecorationSpace d = target.gameObject.GetComponent<DecorationSpace>();
+                if (d)
+                {
+                    d.Decorate();
+                }
+                break;
+        }
+
+        return false;
+=======
     void Awake () 
     {
 		sceneController = GameObject.Find ("GLOBAL_SCRIPTS").GetComponent<SceneController> ();
@@ -23,6 +53,7 @@ public class ToolItem : MonoBehaviour
 			Vector2 objectPos = sceneController.tableObjectPositions [gameObject.name];
 			gameObject.GetComponent<Rigidbody2D> ().position = objectPos;
 		} 
+>>>>>>> d1b83d648f703fb923932cb890995978dedc403f
     }
 
 	void OnDestroy()
