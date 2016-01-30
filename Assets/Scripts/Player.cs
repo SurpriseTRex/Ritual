@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
 
 	bool playerOverTable;
 
+	SceneController sceneController;
+
 	// UI
 	GameObject tableSwitchPanel;
 
@@ -19,6 +21,8 @@ public class Player : MonoBehaviour
 		playerSpeed = 20f;
 		clickedPosition = Vector2.zero;
 		playerOverTable = false;
+
+		sceneController = GameObject.Find ("GLOBAL_SCRIPTS").GetComponent<SceneController> ();
 
 		// UI
 		tableSwitchPanel = GameObject.Find ("Table_Switch_Panel");
@@ -35,7 +39,7 @@ public class Player : MonoBehaviour
 
 		if (playerOverTable && Input.GetKeyDown(KeyCode.E))
 		{
-			GameObject.Find("SCRIPTS").GetComponent<SceneController>().loadNextLevel("table_scene");
+			sceneController.loadNextLevel("table_scene");
 		}
 	}
 
