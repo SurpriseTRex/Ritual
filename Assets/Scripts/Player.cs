@@ -16,13 +16,15 @@ public class Player : MonoBehaviour
 	GameObject tableSwitchPanel;
 
 	void Start()
-	{
+	{		
+		sceneController = GameObject.Find ("GLOBAL_SCRIPTS").GetComponent<SceneController> ();
+
 		rigidBody = gameObject.GetComponent<Rigidbody2D>();
+		rigidBody.position = sceneController.playerPosition;
 		playerSpeed = 20f;
 		clickedPosition = Vector2.zero;
 		playerOverTable = false;
 
-		sceneController = GameObject.Find ("GLOBAL_SCRIPTS").GetComponent<SceneController> ();
 
 		// UI
 		tableSwitchPanel = GameObject.Find ("Table_Switch_Panel");
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
 
 		if (playerOverTable && Input.GetKeyDown(KeyCode.E))
 		{
+			sceneController.playerPosition = rigidBody.position;
 			sceneController.loadNextLevel("table_scene");
 		}
 	}

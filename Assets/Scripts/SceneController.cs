@@ -4,10 +4,12 @@ using System.Collections;
 public class SceneController : MonoBehaviour 
 {
 	string levelToLoad;
+	public Vector2 playerPosition;
 
 	void Start()
 	{
 		DontDestroyOnLoad (this);
+		playerPosition = Vector2.zero;
 
 		if (Application.loadedLevelName == "loader_scene")
 		{
