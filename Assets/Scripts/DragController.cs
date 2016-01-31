@@ -19,11 +19,13 @@ public class DragController : MonoBehaviour
 
             if (heldItem != null)
             {
+				bool intersecting = false;
                 GameObject[] interactables = GameObject.FindGameObjectsWithTag("Interactable");
                 for (int i = 0; i < interactables.Length; i++)
                 {
                     if (DoObjectsIntersect(heldItem.gameObject, interactables[i]))
                     {
+						intersecting = true;
                         targetItem = interactables[i].GetComponent<TargetItem>();
                         if (targetItem != null && !targetItem.activated)
                         {
@@ -31,11 +33,16 @@ public class DragController : MonoBehaviour
                         }
                     }
                 }
+
+				if (intersecting == false)
+				{
+					targetItem = null;
+				}
             }
         }
         else
 		{
-            if (heldItem != null)
+            if (heldItem != null && targetItem != null)
             {
                 heldItem.AddPoints();
             }
