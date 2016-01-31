@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 	Rigidbody2D rigidBody;
 
 	bool playerOverTable;
+	GameObject bodies;
 
 	SceneController sceneController;
 	Animator anim;
@@ -20,6 +21,8 @@ public class Player : MonoBehaviour
 	{		
 		sceneController = GameObject.Find ("GLOBAL_SCRIPTS").GetComponent<SceneController> ();
 		anim = GetComponent<Animator> ();
+
+		bodies = GameObject.Find ("bodies");
 
 		rigidBody = gameObject.GetComponent<Rigidbody2D>();
 		rigidBody.position = sceneController.playerPosition;
@@ -45,6 +48,19 @@ public class Player : MonoBehaviour
 		{
 			sceneController.playerPosition = rigidBody.position;
 			sceneController.loadNextLevel("table_scene");
+		}
+
+		if (rigidBody.position.y > bodies.transform.position.y)
+		{
+			Vector3 bodiesPos = bodies.transform.position;
+			bodiesPos.z = -2;
+			bodies.transform.position = bodiesPos;
+		}
+		else
+		{
+			Vector3 bodiesPos = bodies.transform.position;
+			bodiesPos.z = 0;
+			bodies.transform.position = bodiesPos;
 		}
 	}
 

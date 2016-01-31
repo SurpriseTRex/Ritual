@@ -7,10 +7,16 @@ public class Sacrifice : MonoBehaviour
     GameObject liquidCollider;
     private int blood = 500;
 
+    private int stabbedTimes;
+    private int maxStabbings;
+
     void Start()
     {
         liquidCollider = Instantiate(GameObject.Find("liquid"));
         liquidCollider.SetActive(false);
+
+        maxStabbings = 3;
+        stabbedTimes = 0;
     }
 
     void Update () 
@@ -35,5 +41,17 @@ public class Sacrifice : MonoBehaviour
         liquidCollider.SetActive(true);
         liquidCollider.transform.position = new Vector3(pos.x, pos.y - 1.7f, pos.z);
         gameObject.GetComponent<TargetItem>().activated = true;
+
+        stabbedTimes++;
+
+        if (stabbedTimes > maxStabbings)
+        {
+            Overkill();
+        }
+    }
+
+    private void Overkill()
+    {
+        Debug.Log("OVERKILL! LOST POINTS!");
     }
 }
