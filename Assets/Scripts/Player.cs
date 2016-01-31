@@ -80,6 +80,15 @@ public class Player : MonoBehaviour
 		playerOverTable = false;
 	}
 
+	void OnCollisionEnter2D(Collision2D col) 
+	{
+		if (col.gameObject.name == "bg_group")
+		{
+			clickedPosition = Vector2.zero;
+			setAnimation(clickedPosition);
+		}
+	}
+
 	void setAnimation(Vector2 clickedPosition)
 	{
 		// Set INT for Animations
