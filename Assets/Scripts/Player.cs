@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 	public float playerSpeed;
 	Rigidbody2D rigidBody;
 
-	bool playerOverTable;
+	GameObject playerOverTable;
 	GameObject bodies;
 
 	SceneController sceneController;
@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
 		rigidBody.position = sceneController.playerPosition;
 		playerSpeed = 4f;
 		clickedPosition = Vector2.zero;
-		playerOverTable = false;
 
 		// UI
 		tableSwitchPanel = GameObject.Find ("Table_Switch_Panel");
@@ -47,7 +46,7 @@ public class Player : MonoBehaviour
 		if (playerOverTable && Input.GetKeyDown(KeyCode.E))
 		{
 			sceneController.playerPosition = rigidBody.position;
-			sceneController.loadNextLevel("table_scene");
+			sceneController.loadNextLevel(playerOverTable.name + "_scene");
 		}
 
 		if (rigidBody.position.y > bodies.transform.position.y)
@@ -86,14 +85,14 @@ public class Player : MonoBehaviour
 		if (col.gameObject.tag == "Table")
 		{
 			tableSwitchPanel.SetActive(true);
-			playerOverTable = true;
+			playerOverTable = col.gameObject;
 		} 
 	}
 
 	public void OnTriggerExit2D(Collider2D col)
 	{
 		tableSwitchPanel.SetActive(false);
-		playerOverTable = false;
+		playerOverTable = null;
 	}
 
 	void OnCollisionEnter2D(Collision2D col) 
