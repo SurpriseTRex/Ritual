@@ -25,7 +25,7 @@ public class Cup : MonoBehaviour
 
     internal void Fill()
     {
-        if (fillLevel > capacity)
+        if (fillLevel > capacity && !hasOverflowed)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = fullChalice;
         }
