@@ -29,9 +29,11 @@ public class Sacrifice : MonoBehaviour
         {
             blood--;
         }
-        else if (gameObject.GetComponent<TargetItem>().activated)
+
+        if (blood <= 0)
         {
-            liquidCollider.GetComponent<Collider2D>().enabled = false;
+            //liquidCollider.GetComponent<Collider2D>().enabled = false;
+            liquidCollider.gameObject.SetActive(false);
             gameObject.GetComponent<ParticleSystem>().Stop();
         }
     }
