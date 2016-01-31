@@ -59,7 +59,6 @@ public class Sacrifice : MonoBehaviour
 
     private void Overkill()
     {
-        Debug.Log("OVERKILL! LOST POINTS!");
         pc.sacPoints -= 1500;
     }
 }
