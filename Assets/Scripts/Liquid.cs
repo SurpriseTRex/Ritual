@@ -17,6 +17,6 @@ public class Liquid : MonoBehaviour
 
     internal void Collect()
     {
-        Debug.Log("Collected " + gameObject.name);
+
     }
 }

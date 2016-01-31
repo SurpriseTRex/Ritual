@@ -13,8 +13,6 @@ public class ToolItem : MonoBehaviour
     }
 
     public ItemType type;
-    public int capacity = 200;
-    public int quantity = 0;
 
     void Awake () 
     {

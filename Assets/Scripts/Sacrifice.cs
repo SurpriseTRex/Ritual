@@ -5,7 +5,7 @@ using System;
 public class Sacrifice : MonoBehaviour
 {
     GameObject liquidCollider;
-    private int quantity = 500;
+    private int blood = 500;
 
     void Start()
     {
@@ -15,9 +15,9 @@ public class Sacrifice : MonoBehaviour
 
     void Update () 
     {
-        if (gameObject.GetComponent<TargetItem>().activated && quantity > 0)
+        if (gameObject.GetComponent<TargetItem>().activated && blood > 0)
         {
-            quantity--;
+            blood--;
         }
         else if (gameObject.GetComponent<TargetItem>().activated)
         {
