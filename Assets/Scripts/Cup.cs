@@ -7,8 +7,10 @@ public class Cup : MonoBehaviour
     public int capacity;
     public int fillLevel;
     public int overflowThreshold;
-    public Sprite emptyChalice;
+    public Sprite overflowChalice;
     public Sprite fullChalice;
+
+	public bool hasOverflowed;
 
     PointsController pc;
 
@@ -20,18 +22,6 @@ public class Cup : MonoBehaviour
         fillLevel = 0;
         overflowThreshold = capacity * 2;
     }
-    
-    void Update () 
-    {
-        if (fillLevel < overflowThreshold)
-        {
-            pc.cupPoints = fillLevel * 5;
-        }
-        else
-        {
-            pc.cupPoints = capacity * -10;
-        }
-    }
 
     internal void Fill()
     {
@@ -42,16 +32,22 @@ public class Cup : MonoBehaviour
         if (fillLevel < overflowThreshold)
         {
             fillLevel++;
+			pc.cupPoints += 5;
         }
         else
         {
-            Overflow();
+			if (!hasOverflowed)
+			{
+				Overflow();
+			}
         }
     }
 
     private void Overflow()
     {
-        gameObject.GetComponent<SpriteRenderer>().sprite = emptyChalice;
+		pc.cupPoints -= 10 * overflowThreshold;
+        gameObject.GetComponent<SpriteRenderer>().sprite = overflowChalice;
         Debug.Log("SPILLED IT! LOSE POINTS.");
+		hasOverflowed = true;
     }
 }
