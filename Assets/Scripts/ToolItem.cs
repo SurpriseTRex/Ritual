@@ -41,6 +41,7 @@ public class ToolItem : MonoBehaviour
                 if (l)
                 {
                     l.Collect();
+                    gameObject.GetComponent<Cup>().Fill();
                 }
                 break;
             case ItemType.Decorative:
