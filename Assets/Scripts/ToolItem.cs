@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class ToolItem : MonoBehaviour 
 {
 	SceneController sceneController;
+    PointsController pc;
 
     public enum ItemType
     {
@@ -13,10 +15,12 @@ public class ToolItem : MonoBehaviour
     }
 
     public ItemType type;
+    public int decorativeTimesPlaced;
 
     void Awake () 
     {
 		sceneController = GameObject.Find ("GLOBAL_SCRIPTS").GetComponent<SceneController> ();
+        pc = GameObject.Find("GLOBAL_SCRIPTS").GetComponent<PointsController>();
 		string keyName = Application.loadedLevelName + "-" + gameObject.name;
 
 		if (sceneController.tableObjectPositions.ContainsKey (keyName))
@@ -55,6 +59,19 @@ public class ToolItem : MonoBehaviour
         }
 
         return false;
+    }
+
+    internal void AddPoints()
+    {
+        switch (type)
+        {
+            case ItemType.Decorative:
+                pc.putPoints += (1000 / (decorativeTimesPlaced == 0 ? 1 : decorativeTimesPlaced)) - (100 * decorativeTimesPlaced);
+                decorativeTimesPlaced++;
+                break;
+            default:
+                break;
+        }
     }
 
     void OnDestroy()

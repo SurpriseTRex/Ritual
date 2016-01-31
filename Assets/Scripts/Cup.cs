@@ -25,7 +25,7 @@ public class Cup : MonoBehaviour
     {
         if (fillLevel < overflowThreshold)
         {
-            pc.cupPoints = capacity * 5;
+            pc.cupPoints = fillLevel * 5;
         }
         else
         {

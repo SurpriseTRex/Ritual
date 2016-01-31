@@ -35,6 +35,10 @@ public class DragController : MonoBehaviour
         }
         else
 		{
+            if (heldItem != null)
+            {
+                heldItem.AddPoints();
+            }
             targetItem = null;
             heldItem = null;
 		}
