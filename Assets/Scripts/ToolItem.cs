@@ -17,10 +17,11 @@ public class ToolItem : MonoBehaviour
     void Awake () 
     {
 		sceneController = GameObject.Find ("GLOBAL_SCRIPTS").GetComponent<SceneController> ();
+		string keyName = Application.loadedLevelName + "-" + gameObject.name;
 
-		if (sceneController.tableObjectPositions.ContainsKey (gameObject.name))
+		if (sceneController.tableObjectPositions.ContainsKey (keyName))
 		{			
-			Vector2 objectPos = sceneController.tableObjectPositions [gameObject.name];
+			Vector2 objectPos = sceneController.tableObjectPositions [keyName];
 			gameObject.GetComponent<Rigidbody2D> ().position = objectPos;
 		} 
     }
@@ -59,13 +60,15 @@ public class ToolItem : MonoBehaviour
     void OnDestroy()
 	{
 		Rigidbody2D rigidbody = gameObject.GetComponent<Rigidbody2D> ();
-		if (sceneController.tableObjectPositions.ContainsKey (gameObject.name))
+		string keyName = Application.loadedLevelName + "-" + gameObject.name;
+
+		if (sceneController.tableObjectPositions.ContainsKey (keyName))
 		{
-			sceneController.tableObjectPositions[gameObject.name] = rigidbody.position;
+			sceneController.tableObjectPositions[keyName] = rigidbody.position;
 		} 
 		else
 		{
-			sceneController.tableObjectPositions.Add (gameObject.name, rigidbody.position);
+			sceneController.tableObjectPositions.Add (keyName, rigidbody.position);
 		}
 	}
 }
