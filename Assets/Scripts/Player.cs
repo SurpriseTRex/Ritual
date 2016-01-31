@@ -38,13 +38,30 @@ public class Player : MonoBehaviour
 		{
 			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			clickedPosition = new Vector2(mousePos.x, mousePos.y);
-			setAnimation(clickedPosition);
 		}
 
 		if (playerOverTable && Input.GetKeyDown(KeyCode.E))
 		{
 			sceneController.playerPosition = rigidBody.position;
 			sceneController.loadNextLevel("table_scene");
+		}
+
+		// Set INT for Animations
+		// 0 == Idle
+		// 1 == Up
+		// 2 == Down
+		// 3 == Left
+		// 4 == Right
+		if (clickedPosition == Vector2.zero)
+		{
+			anim.SetInteger("Direction", 0);
+		}
+		else
+		{
+			if ((clickedPosition - rigidBody.position).y < 0)
+			{
+				anim.SetInteger("Direction", 2);
+			}
 		}
 	}
 
@@ -56,7 +73,6 @@ public class Player : MonoBehaviour
 			if ((rigidBody.position - clickedPosition).magnitude < 0.1)
 			{
 				clickedPosition = Vector2.zero;
-				setAnimation(clickedPosition);
 			}
 		}
 		else
@@ -78,55 +94,5 @@ public class Player : MonoBehaviour
 	{
 		tableSwitchPanel.SetActive(false);
 		playerOverTable = false;
-	}
-
-	void setAnimation(Vector2 clickedPosition)
-	{
-		// Set INT for Animations
-		// 0 == Idle
-		// 1 == Up
-		// 2 == Down
-		// 3 == Side
-		if (clickedPosition == Vector2.zero)
-		{
-			anim.SetInteger("Direction", 0);
-		}
-		else
-		{
-			Vector2 posDiff = clickedPosition - rigidBody.position;
-			if (Mathf.Abs(posDiff.x) > Mathf.Abs(posDiff.y))
-			{
-				anim.SetInteger("Direction", 3);
-				if ((clickedPosition - rigidBody.position).x < 0)
-				{
-					Vector3 transformScale = transform.localScale;
-					if (transformScale.x > 0)
-					{						
-						transformScale.x *= -1;
-						transform.localScale = transformScale;
-					}
-				}
-				else if ((clickedPosition - rigidBody.position).x > 0)
-				{
-					Vector3 transformScale = transform.localScale;
-					if (transformScale.x < 0)
-					{						
-						transformScale.x *= -1;
-						transform.localScale = transformScale;
-					}
-				}
-			}
-			else
-			{
-				if ((clickedPosition - rigidBody.position).y > 0)
-				{
-					anim.SetInteger("Direction", 1);
-				}
-				else if ((clickedPosition - rigidBody.position).y < 0)
-				{
-					anim.SetInteger("Direction", 2);
-				}
-			}
-		}
 	}
 }
