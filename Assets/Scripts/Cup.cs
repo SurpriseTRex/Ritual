@@ -10,8 +10,12 @@ public class Cup : MonoBehaviour
     public Sprite emptyChalice;
     public Sprite fullChalice;
 
+    PointsController pc;
+
     void Start () 
     {
+        pc = GameObject.Find("GLOBAL_SCRIPTS").GetComponent<PointsController>();
+
         capacity = 180;
         fillLevel = 0;
         overflowThreshold = capacity * 2;
@@ -19,7 +23,14 @@ public class Cup : MonoBehaviour
     
     void Update () 
     {
-    
+        if (fillLevel < overflowThreshold)
+        {
+            pc.cupPoints = capacity * 5;
+        }
+        else
+        {
+            pc.cupPoints = capacity * -10;
+        }
     }
 
     internal void Fill()

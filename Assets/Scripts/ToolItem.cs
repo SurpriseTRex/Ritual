@@ -48,7 +48,7 @@ public class ToolItem : MonoBehaviour
                 DecorationSpace d = target.gameObject.GetComponent<DecorationSpace>();
                 if (d)
                 {
-                    d.Decorate();
+                    d.Decorate(this);
                 }
                 break;
         }

@@ -3,15 +3,18 @@ using System.Collections.Generic;
 
 public class PointsController : MonoBehaviour 
 {
-    public int points;
+    public int sacPoints;
+    public int cupPoints;
+    public int putPoints;
+    public int finalPoints;
 
     void Start () 
     {
-        points = 0;
+        sacPoints = cupPoints = putPoints = 0;
     }
     
     void Update () 
     {
-    
+        finalPoints = sacPoints + cupPoints + putPoints;
     }
 }

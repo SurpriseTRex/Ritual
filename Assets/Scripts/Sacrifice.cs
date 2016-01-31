@@ -10,12 +10,16 @@ public class Sacrifice : MonoBehaviour
     private int stabbedTimes;
     private int maxStabbings;
 
+    PointsController pc;
+
     void Start()
     {
+        pc = GameObject.Find("GLOBAL_SCRIPTS").GetComponent<PointsController>();
+
         liquidCollider = Instantiate(GameObject.Find("liquid"));
         liquidCollider.SetActive(false);
 
-        maxStabbings = 3;
+        maxStabbings = 1;
         stabbedTimes = 0;
     }
 
@@ -34,7 +38,6 @@ public class Sacrifice : MonoBehaviour
 
     internal void Kill()
     {
-        Debug.Log("Killed " + gameObject.name);
         gameObject.GetComponent<ParticleSystem>().Play();
 
         Vector3 pos = transform.position;
@@ -42,16 +45,21 @@ public class Sacrifice : MonoBehaviour
         liquidCollider.transform.position = new Vector3(pos.x, pos.y - 1.7f, pos.z);
         gameObject.GetComponent<TargetItem>().activated = true;
 
-        stabbedTimes++;
-
         if (stabbedTimes > maxStabbings)
         {
             Overkill();
         }
+        else
+        {
+            pc.sacPoints += 1000;
+        }
+
+        stabbedTimes++;
     }
 
     private void Overkill()
     {
         Debug.Log("OVERKILL! LOST POINTS!");
+        pc.sacPoints -= 1500;
     }
 }
