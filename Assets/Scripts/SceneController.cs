@@ -22,7 +22,7 @@ public class SceneController : MonoBehaviour
 
 	void Update () 
 	{
-		if (Application.loadedLevelName == "table_scene")
+		if (Application.loadedLevelName.Contains("Table_scene"))
 		{
 			if (Input.GetKeyDown (KeyCode.E))
 			{
