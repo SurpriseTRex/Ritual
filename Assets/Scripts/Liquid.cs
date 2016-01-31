@@ -12,7 +12,7 @@ public class Liquid : MonoBehaviour
     
     void Update () 
     {
-    
+        
     }
 
     internal void Collect()

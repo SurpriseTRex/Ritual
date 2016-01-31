@@ -17,6 +17,6 @@ public class DecorationSpace : MonoBehaviour
 
     internal void Decorate()
     {
-        Debug.Log("Decorated " + gameObject.name);
+        //Debug.Log("Decorated " + gameObject.name);
     }
 }

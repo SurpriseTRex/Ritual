@@ -7,7 +7,7 @@ public class DragController : MonoBehaviour
 
     void Update ()
     {
-		if (Input.GetMouseButtonDown(0)) 
+		if (Input.GetMouseButton(0)) 
 		{
 			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -16,9 +16,7 @@ public class DragController : MonoBehaviour
 			{
                 heldItem = hit.collider.gameObject.GetComponent<ToolItem>();
 			}
-		}
-        else if (Input.GetMouseButtonUp(0))
-		{
+
             if (heldItem != null)
             {
                 GameObject[] interactables = GameObject.FindGameObjectsWithTag("Interactable");
@@ -29,13 +27,16 @@ public class DragController : MonoBehaviour
                         targetItem = interactables[i].GetComponent<TargetItem>();
                     }
                 }
-                if (targetItem != null)
+                if (targetItem != null && !targetItem.activated)
                 {
                     heldItem.InteractWith(targetItem);
                 }
-                targetItem = null;
-                heldItem = null;
             }
+        }
+        else
+		{
+            targetItem = null;
+            heldItem = null;
 		}
     }
 

@@ -6,6 +6,7 @@ public class TargetItem : MonoBehaviour
 {
     Vector3 origScale;
     Vector3 hoverScale;
+    internal bool activated;
 
     void Start () 
     {
