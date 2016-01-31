@@ -25,11 +25,11 @@ public class DragController : MonoBehaviour
                     if (DoObjectsIntersect(heldItem.gameObject, interactables[i]))
                     {
                         targetItem = interactables[i].GetComponent<TargetItem>();
+                        if (targetItem != null && !targetItem.activated)
+                        {
+                            heldItem.InteractWith(targetItem);
+                        }
                     }
-                }
-                if (targetItem != null && !targetItem.activated)
-                {
-                    heldItem.InteractWith(targetItem);
                 }
             }
         }
